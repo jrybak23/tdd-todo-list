@@ -2,21 +2,17 @@ package com.example.controllers;
 
 import com.example.config.IntegrationTestProfile;
 import com.github.database.rider.cdi.api.DBRider;
-import com.github.database.rider.core.api.configuration.DBUnit;
-import com.github.database.rider.core.api.configuration.Orthography;
 import com.github.database.rider.core.api.dataset.DataSet;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.junit.TestProfile;
 import org.junit.jupiter.api.Test;
 
-import static com.github.database.rider.core.api.configuration.Orthography.LOWERCASE;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
 @TestProfile(IntegrationTestProfile.class)
 @DBRider
-@DBUnit(schema = "public", caseInsensitiveStrategy = LOWERCASE)
 class TodoResourceTest {
     @Test
     @DataSet(value = "todo-items.xml")

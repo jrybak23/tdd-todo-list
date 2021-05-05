@@ -1,0 +1,5 @@
+caseInsensitiveStrategy: LOWERCASE
+disableSequenceFiltering: true
+properties:
+  schema: public
+  datatypeFactory: !!org.dbunit.ext.postgresql.PostgresqlDataTypeFactory {}
