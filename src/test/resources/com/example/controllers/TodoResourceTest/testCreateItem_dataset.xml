@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dataset SYSTEM "./src/test/resources/db-schema.dtd">
+<dataset>
+    <todo_item id="8aa23897-89dd-4d08-8638-8fb39d49dcfb"
+               content="todo item 1"
+               datetime_created="2021-05-04 17:41:50.000000"/>
+</dataset>

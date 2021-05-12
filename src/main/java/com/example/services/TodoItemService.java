@@ -6,6 +6,8 @@ import com.example.entities.TodoItem;
 import com.example.repositorty.TodoItemRepository;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,9 +17,13 @@ import static java.util.stream.Collectors.toList;
 public class TodoItemService {
 
     private final TodoItemRepository todoItemRepository;
+    private final Clock clock;
 
-    public TodoItemService(TodoItemRepository todoItemRepository) {
+    @Inject
+    public TodoItemService(TodoItemRepository todoItemRepository,
+                           Clock clock) {
         this.todoItemRepository = todoItemRepository;
+        this.clock = clock;
     }
 
     public List<TodoItemResponse> findAll() {
@@ -34,7 +40,7 @@ public class TodoItemService {
     private TodoItem convertToEntity(TodoItemRequest todoItemRequest) {
         TodoItem todoItem = new TodoItem();
         todoItem.setContent(todoItemRequest.getContent());
-        todoItem.setDateTimeCreated(LocalDateTime.now());
+        todoItem.setDateTimeCreated(LocalDateTime.now(clock));
         return todoItem;
     }
 }
