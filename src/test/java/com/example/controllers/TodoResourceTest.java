@@ -13,10 +13,10 @@ import java.io.InputStream;
 import java.time.Clock;
 import java.time.LocalDateTime;
 
-import static com.example.TestUtil.getResourceAsStream;
-import static com.example.TestUtil.mockClockAtTime;
+import static com.example.testutil.JSONMatchers.matchesJSONInFile;
+import static com.example.testutil.TestUtil.getResourceAsStream;
+import static com.example.testutil.TestUtil.mockClockAtTime;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
 @TestProfile(IntegrationTestProfile.class)
@@ -34,7 +34,7 @@ class TodoResourceTest {
                 .when().get("/todo-items")
                 .then()
                 .statusCode(200)
-                .body(is("[{\"content\":\"buy eggs\",\"dateTimeCreated\":\"2021-05-04T17:41:50\",\"id\":\"8aa23897-89dd-4d08-8638-8fb39d49dcfb\"}]"));
+                .body(matchesJSONInFile(BASE_DIR + "testGetItems_expectedResponse.json"));
     }
 
     @Test
