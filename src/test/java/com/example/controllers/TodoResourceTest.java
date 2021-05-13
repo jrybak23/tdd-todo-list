@@ -39,7 +39,7 @@ class TodoResourceTest {
 
     @Test
     @DataSet(value = BASE_DIR + "testCreateItem_dataset.xml")
-    @ExpectedDataSet(value = BASE_DIR + "testCreateItem_expectedDataset.xml")
+    @ExpectedDataSet(value = BASE_DIR + "testCreateItem_expectedDataset.xml", orderBy = "content")
     void testCreateItem() {
         mockClockAtTime(clock, LocalDateTime.parse("2021-05-11T00:33:53.409656900"));
         InputStream testPayload = getResourceAsStream(BASE_DIR + "testCreateItem_payload.json");
