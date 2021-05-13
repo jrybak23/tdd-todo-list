@@ -28,7 +28,7 @@ class TodoResourceTest {
     Clock clock;
 
     @Test
-    @DataSet(value = "todo-items.xml")
+    @DataSet(value = BASE_DIR + "testGetItems_dataset.xml")
     void testGetItems() {
         given()
                 .when().get("/todo-items")
