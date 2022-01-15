@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 
 import static com.example.testutil.JSONMatchers.matchesJSONInFile;
 import static com.example.testutil.TestUtil.getResourceAsStream;
-import static com.example.testutil.TestUtil.mockClockAtTime;
+import static com.example.testutil.TestUtil.mockClockToReturnDateTime;
 import static io.restassured.RestAssured.given;
 
 @QuarkusTest
@@ -41,7 +41,7 @@ class TodoResourceTest {
     @DataSet(value = BASE_DIR + "testCreateItem_dataset.xml")
     @ExpectedDataSet(value = BASE_DIR + "testCreateItem_expectedDataset.xml", orderBy = "content")
     void testCreateItem() {
-        mockClockAtTime(clock, LocalDateTime.parse("2021-05-11T00:33:53.409656900"));
+        mockClockToReturnDateTime(clock, LocalDateTime.parse("2021-05-11T00:33:53.409656900"));
         InputStream testPayload = getResourceAsStream(BASE_DIR + "testCreateItem_payload.json");
         given()
                 .when()
