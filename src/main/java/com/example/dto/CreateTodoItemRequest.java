@@ -6,11 +6,11 @@ import javax.json.bind.annotation.JsonbCreator;
 import javax.json.bind.annotation.JsonbProperty;
 
 @Getter
-public class TodoItemRequest {
+public class CreateTodoItemRequest {
     private final String content;
 
     @JsonbCreator
-    public TodoItemRequest(@JsonbProperty("content") String content) {
+    public CreateTodoItemRequest(@JsonbProperty("content") String content) {
         this.content = content;
     }
 }

@@ -17,6 +17,7 @@ import static com.example.testutil.JSONMatchers.matchesJSONInFile;
 import static com.example.testutil.TestUtil.getResourceAsStream;
 import static com.example.testutil.TestUtil.mockClockToReturnDateTime;
 import static io.restassured.RestAssured.given;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.Response.Status.CREATED;
 import static javax.ws.rs.core.Response.Status.OK;
 
@@ -48,10 +49,28 @@ class TodoResourceTest {
         InputStream testPayload = getResourceAsStream(BASE_DIR + "testCreateItem_payload.json");
         given()
                 .when()
-                .contentType("application/json").body(testPayload)
+                .contentType(APPLICATION_JSON).body(testPayload)
                 .post("/todo-items")
                 .then()
                 .log().ifValidationFails()
                 .statusCode(CREATED.getStatusCode());
+    }
+
+    /**
+     * test for {@link TodoResource#updateItem(com.example.dto.UpdateTodoItemRequest, java.util.UUID)}
+     */
+    @Test
+    @DataSet(value = BASE_DIR + "testUpdateItem_dataset.xml")
+    @ExpectedDataSet(value = BASE_DIR + "testUpdateItem_expectedDataset.xml", orderBy = "content")
+    void testUpdateItem() {
+        String id = "6f94d587-e3c6-4faf-b9a7-334a69fdf0e9";
+        InputStream testPayload = getResourceAsStream(BASE_DIR + "testUpdateItem_payload.json");
+        given()
+                .when()
+                .contentType(APPLICATION_JSON).body(testPayload)
+                .put("/todo-items/" + id)
+                .then()
+                .log().ifValidationFails()
+                .statusCode(OK.getStatusCode());
     }
 }
