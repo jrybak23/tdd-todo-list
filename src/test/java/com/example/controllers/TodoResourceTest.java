@@ -17,6 +17,8 @@ import static com.example.testutil.JSONMatchers.matchesJSONInFile;
 import static com.example.testutil.TestUtil.getResourceAsStream;
 import static com.example.testutil.TestUtil.mockClockToReturnDateTime;
 import static io.restassured.RestAssured.given;
+import static javax.ws.rs.core.Response.Status.CREATED;
+import static javax.ws.rs.core.Response.Status.OK;
 
 @QuarkusTest
 @TestProfile(IntegrationTestProfile.class)
@@ -33,7 +35,8 @@ class TodoResourceTest {
         given()
                 .when().get("/todo-items")
                 .then()
-                .statusCode(200)
+                .statusCode(OK.getStatusCode())
+                .log().ifValidationFails()
                 .body(matchesJSONInFile(BASE_DIR + "testGetItems_expectedResponse.json"));
     }
 
@@ -48,6 +51,7 @@ class TodoResourceTest {
                 .contentType("application/json").body(testPayload)
                 .post("/todo-items")
                 .then()
-                .statusCode(201);
+                .log().ifValidationFails()
+                .statusCode(CREATED.getStatusCode());
     }
 }
