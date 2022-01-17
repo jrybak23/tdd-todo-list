@@ -43,4 +43,11 @@ public class TodoResource {
         todoItemService.update(request, id);
         return Response.status(OK).build();
     }
+
+    @DELETE
+    @Path("/{id}")
+    public Response deleteItem(@PathParam("id") UUID id) {
+        todoItemService.delete(id);
+        return Response.status(OK).build();
+    }
 }

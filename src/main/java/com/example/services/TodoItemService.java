@@ -52,4 +52,8 @@ public class TodoItemService {
         TodoItem item = todoItemRepository.findById(id).orElseThrow();
         item.setContent(request.getContent());
     }
+
+    public void delete(UUID id) {
+        todoItemRepository.deleteById(id);
+    }
 }

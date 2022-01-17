@@ -73,4 +73,20 @@ class TodoResourceTest {
                 .log().ifValidationFails()
                 .statusCode(OK.getStatusCode());
     }
+
+    /**
+     * test for {@link TodoResource#deleteItem(java.util.UUID)}
+     */
+    @Test
+    @DataSet(value = BASE_DIR + "testDeleteItem_dataset.xml")
+    @ExpectedDataSet(value = BASE_DIR + "testDeleteItem_expectedDataset.xml")
+    void testDeleteItem() {
+        String id = "03e0b794-a016-4691-8565-05cb6bfcfdab";
+        given()
+                .when()
+                .delete("/todo-items/" + id)
+                .then()
+                .log().ifValidationFails()
+                .statusCode(OK.getStatusCode());
+    }
 }
