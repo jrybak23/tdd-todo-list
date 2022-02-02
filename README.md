@@ -1,8 +1,13 @@
-# todo-list project
+# tdd-todo-list - Integration testing setup example 
+## Read [the related article here devguidance.com/posts/integration-testing-setup-for-java-rest-api-applications-with-database-persistence/](https://www.devguidance.com/posts/integration-testing-setup-for-java-rest-api-applications-with-database-persistence/)
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Simple CRUD app just for educational purposes.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+Click to navigate to: 
+- [The testing class](https://github.com/jrybak23/tdd-todo-list/blob/master/src/test/java/com/example/controllers/TodoResourceTest.java)
+- [The controller class](https://github.com/jrybak23/tdd-todo-list/blob/master/src/main/java/com/example/controllers/TodoResource.java)
+- [The dataset file](https://github.com/jrybak23/tdd-todo-list/blob/master/src/test/resources/com/example/controllers/TodoResourceTest/testGetItems_dataset.xml)
+- [The expected response JSON file](https://github.com/jrybak23/tdd-todo-list/blob/master/src/test/resources/com/example/controllers/TodoResourceTest/testGetItems_expectedResponse.json)
 
 ## Running the application in dev mode
 
