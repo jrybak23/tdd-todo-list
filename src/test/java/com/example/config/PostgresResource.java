@@ -5,8 +5,6 @@ import org.testcontainers.containers.PostgreSQLContainer;
 
 import java.util.Map;
 
-import static java.util.Collections.singletonMap;
-
 public class PostgresResource implements QuarkusTestResourceLifecycleManager {
 
     private static final String POSTGRES_CONTAINER_DATA_PATH = "/var/lib/postgresql/data";
@@ -21,7 +19,7 @@ public class PostgresResource implements QuarkusTestResourceLifecycleManager {
     @Override
     public Map<String, String> start() {
         db.start();
-        return singletonMap("quarkus.datasource.jdbc.url", db.getJdbcUrl());
+        return Map.of("quarkus.datasource.jdbc.url", db.getJdbcUrl());
     }
 
     @Override
